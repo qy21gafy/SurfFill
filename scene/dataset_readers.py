@@ -218,7 +218,7 @@ def readCamerasFromTransforms(path, transformsfile, white_background, extension=
 
             norm_data = im_data / 255.0
             arr = norm_data[:,:,:3] * norm_data[:, :, 3:4] + bg * (1 - norm_data[:, :, 3:4])
-            image = Image.fromarray(np.array(arr*255.0, dtype=np.byte), "RGB")
+            image = Image.fromarray(np.array(arr*255.0, dtype=np.uint8), "RGB")
 
             fovy = focal2fov(fov2focal(fovx, image.size[0]), image.size[1])
             FovY = fovy 
@@ -228,7 +228,7 @@ def readCamerasFromTransforms(path, transformsfile, white_background, extension=
        
     return cam_infos
 
-def readNerfSyntheticInfo(path, white_background, eval, iteration="", extension=".png"):
+def readNerfSyntheticInfo(path, white_background, eval, iteration="", extension=""):
     print("Reading Training Transforms")
     # Read in correct chunk transforms or original one the first time
     train_cam_infos = readCamerasFromTransforms(path, f"transforms_train{iteration}.json", white_background, extension)

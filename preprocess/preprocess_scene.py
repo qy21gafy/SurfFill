@@ -27,8 +27,6 @@ def preprocess_all(input_file_path, preproc_params, num_random_points=2000000):
         if dim != preproc_params.w:
             uncertainty_dir = os.path.join(os.path.dirname(input_file_path), "uncertainty")
             imagesmultiple_dir = os.path.join(os.path.dirname(input_file_path), "images")
-            print(input_file_path)
-            print(imagesmultiple_dir)
 
             # Get the target dimensions from the first image in imagesmultiple directory
             target_width, target_height = None, None
