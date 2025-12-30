@@ -1,0 +1,378 @@
+attic:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 12.9
+    scene_width: 12.6
+    scene_height: 3.8
+    max_cam_distance_to_block: 2
+    frustum_length: 10
+    frustum_length_expand_points: 3
+    frustum_length_expand_points_prob: 7
+    scene_lower_corner: [-4.8, -6.2, -1.1]
+    maxprob: 0.1
+    uncertainthreshhold: 0.2
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.04
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: True
+    testscene: False
+    tnt: False
+    w: 700
+    h: 700
+  OptimizationParams:
+    position_lr_init: 0.00004
+    position_lr_final: 0.000001
+    scaling_lr: 0.002
+    lambda_dist: 0.01
+    lambda_normal: 0.02
+    opacity_cull: 0.01
+    opacity_reset_interval: 7550
+    densification_interval: 100
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.4
+    scale_weight: 1.0
+    noiselr: 500000
+
+kitchen:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.9
+    scene_length: 5.2
+    scene_width: 7
+    scene_height: 3.1
+    max_cam_distance_to_block: 2
+    frustum_length: 7
+    frustum_length_expand_points: 1.5
+    frustum_length_expand_points_prob: 7
+    scene_lower_corner: [-2.6, -3.3, -1.5]
+    maxprob: 0.1
+    uncertainthreshhold: 0.2
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.04
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: True
+    tnt: False
+    w: 1024
+    h: 1024
+  OptimizationParams:
+    position_lr_init: 0.00016
+    position_lr_final: 0.0000016
+    scaling_lr: 0.0035
+    lambda_dist: 0.01
+    lambda_normal: 0.02
+    opacity_cull: 0.04
+    opacity_reset_interval: 7550
+    densification_interval: 50
+    densify_grad_threshold: 0.00024
+    edge_factor: 0.05
+    scale_weight: 1.0
+    noiselr: 500000
+
+museum:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 33.7
+    scene_width: 20.6
+    scene_height: 4.7
+    max_cam_distance_to_block: 3
+    frustum_length: 15
+    frustum_length_expand_points: 3
+    frustum_length_expand_points_prob: 4
+    scene_lower_corner: [-16.5, -11.2, -0.4]
+    maxprob: 0.1
+    uncertainthreshhold: 0.2
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.04
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: True
+    tnt: False
+    w: 700
+    h: 700
+  OptimizationParams:
+    position_lr_init: 0.00004
+    position_lr_final: 0.0000006
+    scaling_lr: 0.002
+    lambda_dist: 0.03
+    lambda_normal: 0.05
+    opacity_cull: 0.01
+    opacity_reset_interval: 7550
+    densification_interval: 100
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.05
+    scale_weight: 0.05
+    noiselr: 500000
+navvisattic:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 12.9
+    scene_width: 12.6
+    scene_height: 3.8
+    max_cam_distance_to_block: 2
+    frustum_length: 15
+    frustum_length_expand_points: 2
+    frustum_length_expand_points_prob: 7
+    scene_lower_corner: [-4.8, -6.2, -1.1]
+    maxprob: 0.1
+    uncertainthreshhold: 0.15
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.04
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: False
+    tnt: False
+    w: 700
+    h: 700
+  OptimizationParams:
+    position_lr_init: 0.00004
+    position_lr_final: 0.000001
+    scaling_lr: 0.002
+    lambda_dist: 0.01
+    lambda_normal: 0.02
+    opacity_cull: 0.01
+    opacity_reset_interval: 7550
+    densification_interval: 100
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.4
+    scale_weight: 1.0
+    noiselr: 500000
+caterpillar:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 3.8
+    scene_width: 7.8
+    scene_height: 3.6
+    max_cam_distance_to_block: 3
+    frustum_length: 15
+    frustum_length_expand_points: 2
+    frustum_length_expand_points_prob: 3
+    scene_lower_corner: [-1, -4, 156]
+    maxprob: 0.01
+    uncertainthreshhold: 0.3
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.05
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: False
+    tnt: True
+    w: 1365
+    h: 768
+  OptimizationParams:
+    position_lr_init: 0.00007
+    position_lr_final: 0.0000012
+    scaling_lr: 0.003
+    lambda_dist: 0.03
+    lambda_normal: 0.02
+    opacity_cull: 0.01
+    opacity_reset_interval: 7550
+    densification_interval: 50
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.05
+    scale_weight: 1.0
+    noiselr: 500000
+meetingroom:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: False
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 17.9
+    scene_width: 13.4
+    scene_height: 5.5
+    max_cam_distance_to_block: 3
+    frustum_length: 15
+    frustum_length_expand_points: 3
+    frustum_length_expand_points_prob: 7
+    scene_lower_corner: [3.2, -1, -7]
+    maxprob: 0.04
+    uncertainthreshhold: 0.3
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.04
+    distancerounds: 4
+    nn_points_close: 1
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.5
+    distance_lidar_min: 0.1
+    distance_lidar_max: 3
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: False
+    tnt: True
+    w: 1365
+    h: 768
+  OptimizationParams:
+    position_lr_init: 0.00007
+    position_lr_final: 0.0000012
+    scaling_lr: 0.003
+    lambda_dist: 0.03
+    lambda_normal: 0.02
+    opacity_cull: 0.01
+    opacity_reset_interval: 7550
+    densification_interval: 100
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.4
+    scale_weight: 1.0
+    noiselr: 1500000
+truck:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: True
+  SubdivisionParams:
+    extend_percentage: 0.2
+    scene_length: 7
+    scene_width: 8.5
+    scene_height: 2.5
+    max_cam_distance_to_block: 3
+    frustum_length: 7
+    frustum_length_expand_points: 2
+    frustum_length_expand_points_prob: 1
+    scene_lower_corner: [-5.5, -3, -9]
+    maxprob: 0.1
+    uncertainthreshhold: 0.3
+  FilteringParams:
+    scalethreshold: 4.3
+    curvature_threshold: 0.08
+    distancerounds: 4
+    nn_points_close: 3
+    nn_radius_close: 0.05
+    nn_points_far: 30
+    nn_radius_far: 0.25
+    distance_lidar_min: 0.02
+    distance_lidar_max: 1
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 15
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: False
+    tnt: True
+    w: 1365
+    h: 768
+  OptimizationParams:
+    position_lr_init: 0.00016
+    position_lr_final: 0.0000016
+    scaling_lr: 0.005
+    lambda_dist: 0.03
+    lambda_normal: 0.05
+    opacity_cull: 0.01
+    densification_interval: 100
+    opacity_reset_interval: 7550
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.05
+    scale_weight: 1.0
+    noiselr: 500000
+courthouse:
+  ModelParams:
+    max_gaussians: 2800000
+    _white_background: True
+  SubdivisionParams:
+    extend_percentage: 0.9
+    scene_length: 85
+    scene_width: 79
+    scene_height: 35
+    max_cam_distance_to_block: 28
+    frustum_length: 28
+    frustum_length_expand_points: 2
+    frustum_length_expand_points_prob: 25
+    scene_lower_corner: [-10, -85, -28]
+    maxprob: 0.1
+    uncertainthreshhold: 0.3
+  FilteringParams:
+    scalethreshold: 3.0
+    curvature_threshold: 0.6
+    distancerounds: 1
+    nn_points_close: 1
+    nn_radius_close: 0.07
+    nn_points_far: 30
+    nn_radius_far: 0.7
+    distance_lidar_min: 0.5
+    distance_lidar_max: 70
+    distance_lidar_neighbors: 5
+    points_per_gaussian: 0
+  PreprocessingParams:
+    testsceneDach: False
+    testscene: False
+    tnt: True
+    w: 1365
+    h: 768
+  OptimizationParams:
+    position_lr_init: 0.00009
+    position_lr_final: 0.0000017
+    scaling_lr: 0.003
+    lambda_dist: 0.03
+    lambda_normal: 0.05
+    opacity_reset_interval: 30000
+    opacity_cull: 0.01
+    densification_interval: 100
+    densify_grad_threshold: 0.00013
+    edge_factor: 0.4
+    scale_weight: 1.0
+    noiselr: 500000
