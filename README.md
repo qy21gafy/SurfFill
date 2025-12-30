@@ -1,68 +1,120 @@
 # SurfFill: Completion of LiDAR Point Clouds via Gaussian Surfel Splatting
 
-[Project page](https://lfranke.github.io/surffill/) | [Paper](https://arxiv.org/abs/2512.03010) | [Video](https://www.youtube.com/watch?v=OS3q5OWT-sg) | [Surfel Rasterizer (CUDA)](https://github.com/hbb1/diff-surfel-rasterization) | [Surfel Rasterizer (Python)](https://colab.research.google.com/drive/1qoclD7HJ3-o0O1R8cvV3PxLhoDCMsH8W?usp=sharing) | [SIBR Viewer Pre-built for Windows](https://drive.google.com/file/d/1DRFrtFUfz27QvQKOWbYXbRS2o2eSgaUT/view?usp=sharing)<br>
+[Project page](https://lfranke.github.io/surffill/) • [Paper](https://arxiv.org/abs/2512.03010) • [Video](https://www.youtube.com/watch?v=OS3q5OWT-sg)
 
 ![Teaser image](assets/header.pdf)
 
-This repo contains the official implementation for the paper "SurfFill: Completion of LiDAR Point Clouds via Gaussian Surfel Splatting". Our work improves the completeness of LiDAR point clouds by combining the initial set of LiDAR points with selected points reconstructed using 2D Gaussian Splatting.
+This repository contains the **official implementation** of the paper  
+**_SurfFill: Completion of LiDAR Point Clouds via Gaussian Surfel Splatting_**.
+
+Our work improves the completeness of LiDAR point clouds by combining the initial LiDAR points with selected points reconstructed using **2D Gaussian Splatting**.
+
+---
 
 ## Installation
-Tested with CUDA 12.8 and Torch 2.9.1+cu128
-```bash
-# download
-git clone https://github.com/hbb1/surffill.git --recursive
 
-enter that folder
+**Tested with:**
+- CUDA 12.8
+- PyTorch 2.9.1+cu128
+- Python 3.10
+
+### 1. Clone the repository (with submodules)
+
+```bash
+git clone https://github.com/hbb1/surffill.git --recursive
+cd surffill
+```
+
+### 2. Set up Python environment
+```bash
 pipenv --python 3.10
 pipenv shell
-pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu128
-pip install ffmpeg pillow open3d mediapy lpips scikit-image tqdm trimesh plyfile opencv-python
-enter subfolders
-submodules/diff-surfel-rasterization
-submodules/simple-knn
-in each run 
+```
+### 3. Install PyTorch (CUDA 12.8)
+```bash
+pip install torch torchvision torchaudio \
+  --index-url https://download.pytorch.org/whl/cu128
+```
+### 4. Install additional dependencies
+```bash
+pip install ffmpeg pillow open3d mediapy lpips \
+            scikit-image tqdm trimesh plyfile opencv-python
+```
+### 5. Install submodules
+
+```bash
+cd submodules/diff-surfel-rasterization
 pipenv run python setup.py install
+cd ../..
+
+cd submodules/simple-knn
+pipenv run python setup.py install
+cd ../..
 ```
-Download scannet.pt from https://huggingface.co/ckpt/ControlNet-v1-1/blob/2e01957f9da7799e4c669811c08d1617bdae51bd/scannet.pt and place it into surffill/checkpoints/scannet.pt
+### 6. Download pretrained checkpoint
 
-## Training
-To train a scene, simply use
+Download scannet.pt from:
+https://huggingface.co/ckpt/ControlNet-v1-1/blob/2e01957f9da7799e4c669811c08d1617bdae51bd/scannet.pt
+
+Place it at: 
 ```bash
-PYTHONPATH=. python train.py -s <path to COLMAP or NeRF Synthetic dataset>
+SurfFill/checkpoints/scannet.pt
 ```
+### Training
 
-### Quick Examples
-Assuming you have downloaded [Caterpillar](https://jonbarron.info/mipnerf360/), simply use
+To train a scene, run:
 ```bash
-PYTHONPATH=. python train.py -s <path to caterpillar dataset>/<demo> --scene_name caterpillar
+PYTHONPATH=. python train.py -s <path_to_COLMAP_or_NeRF_dataset>
+```
+### Quick Example
 
-**Custom Dataset**
-We use the same COLMAP loader as 3DGS and can read in data in the Colmap format and the Blender format.
-The expected project structure with Colmap is
+Assuming you have downloaded our preprocessed TnT [Caterpillar](https://drive.google.com/file/d/1ux2zeImxzR1NhM6jIvBZlauUXAAOi78Z/view) demo scene, run:
+```bash
+PYTHONPATH=. python train.py \
+  -s <path_to_caterpillar_dataset>/<demo> \
+  --scene_name caterpillar
+```
+### Custom Dataset
+
+SurfFill uses the same COLMAP loader as 3DGS and can read data in both COLMAP and Blender / NeRF Synthetic formats.
+### COLMAP format
+```bash
 /data_dir
-    /images
-    /sparse
-        /0
-            /cameras.txt, images.txt
-    lidar_pointcloud.ply
-The expected project structure with the Blender format is
+├── images/
+├── sparse/
+│   └── 0/
+│       ├── cameras.txt
+│       └── images.txt
+└── lidar_pointcloud.ply
+```
+### Blender / NeRF Synthetic format
+```bash
 /data_dir
-    /images
-    transforms_train.json
-    optional: transforms_test.json
-    lidar_pointcloud.ply
-We expect the filepaths in the json files to include the .jpg/.png extension
+├── images/
+├── transforms_train.json
+├── transforms_test.json   (optional)
+└── lidar_pointcloud.ply
+```
+Note: File paths in JSON must include the .jpg / .png extension.
 
-The training parameters can be found in arguments/__init__.py and may need to be finetuned to the characteristics of the LiDAR/dataset used.
-Relevant parameters for tuning are self.w and self.h in the Preprocessing parameters, which should be set to the same resolution as the training images. Additionally self.curvature_threshold_preprocessing has to be finetuned such that there is a nice seperation between high curvature and low curvature areas in points3D.ply after subsampling. The parameter range is 0-1.
-The filtering parameters may also need adjustment.
+### Training Parameters & Tuning
 
+Training parameters are defined in:
+```bash
+arguments/__init__.py
+```
+Parameters that may require tuning:
 
-## Acknowledgements
+- Preprocessing resolution: self.w, self.h → should match training image resolution
+- Curvature threshold: self.curvature_threshold_preprocessing → range 0–1. Tune to separate high- vs low-curvature regions in points3D.ply after subsampling
+- Filtering parameters: may require adjustment depending on LiDAR noise and dataset characteristics
+
+### Acknowledgements
+
 This project is built upon [2DGS](https://github.com/hbb1/2d-gaussian-splatting).
 
+### Citation
 
-## Citation
 If you find our code or paper helps, please consider citing:
 ```bibtex
 @misc{strobel2025surffill,
@@ -77,3 +129,4 @@ If you find our code or paper helps, please consider citing:
   url          = {https://lfranke.github.io/surffill}
 }
 ```
+
